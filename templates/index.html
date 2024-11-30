@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>molae sangja</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}"> 
+    <link rel="shortcut icon" href="/static/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <h1>molae sangja</h1>
+        <p class="subtitle">An Interactive English-to-Korean Translation Tool with Context-Sensitive Prompt Engineering.</p>
+        <div class="translation-box">
+            <button class="arrow-button left-arrow">❮</button>
+            <div class="prompt-box">
+                <input type="text" placeholder="Prompt Here">
+            </div>
+            <button class="arrow-button right-arrow">❯</button>
+        </div>
+        <div class="translation-section">
+            <div class="translation english">
+                <p class="label">Translate the following from English to Korean:</p>
+                <p class="text">I'm not a student.</p>
+            </div>
+            <div class="translations">
+                <div class="translation">
+                    <p class="text">저는 학생이 아니에요.</p>
+                    <p class="score">BLEU Score: <span>0.7</span></p>
+                </div>
+                <div class="translation">
+                    <p class="text">나는 학생이 아니다.</p>
+                    <p class="score">BLEU Score: <span>0.3</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
