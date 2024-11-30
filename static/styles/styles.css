@@ -2,101 +2,151 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     background-color: #f9f9f9;
     color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
 .container {
-    text-align: center;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    background: #fff;
     padding: 20px;
+    background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ddd;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 h1 {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
-.subtitle {
+.description {
     font-size: 1rem;
     color: #666;
-    margin-bottom: 20px;
 }
 
-.translation-box {
+/* Content Section */
+.content {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    gap: 20px;
 }
 
-.prompt-box {
+/* Left Section */
+.left-section {
     flex: 1;
-    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
-input[type="text"] {
+.input-group {
     width: 100%;
+    text-align: center;
+}
+
+.input-group input {
+    width: 90%;
     padding: 10px 15px;
     border: 2px solid #ddd;
     border-radius: 20px;
     font-size: 1rem;
-    outline: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
     text-align: center;
+    background-color: #f4f4f4;
+    margin-bottom: 10px;
+}
+
+.input-group .instruction {
+    font-size: 1rem;
+    color: #333;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .arrow-button {
     background: none;
     border: none;
     color: #007bff;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
-    outline: none;
 }
 
 .arrow-button:hover {
     color: #0056b3;
 }
 
-.translation-section {
-    text-align: left;
-}
-
-.label {
+.prompt {
+    font-size: 1.2rem;
     font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 5px;
 }
 
 .translation {
-    margin: 10px 0;
+    text-align: center;
 }
 
-.text {
+.translation .text {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #333;
-    text-align: center;
 }
 
-.score {
+.translation .score {
     font-size: 0.9rem;
     color: #666;
+}
+
+.translation .score span {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Divider */
+.divider {
+    width: 2px;
+    background-color: #ddd;
+    height: 100%;
+}
+
+/* Right Section */
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     text-align: center;
 }
 
-.score span {
+.right-section .text {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.right-section .score {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.right-section .score span {
     color: #007bff;
     font-weight: bold;
+}
+
+/* Responsive Padding */
+body {
+    padding-left: 40px;
+    padding-right: 40px;
 }
