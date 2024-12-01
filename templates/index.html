@@ -17,14 +17,13 @@
             <!-- Left Section -->
             <div class="left-section">
                 <div class="input-group">
-                    <input type="text" id="prompt-input" placeholder="Prompt Here">
-                    <p class="instruction">Translate the following from English to Korean:</p>
+                    <textarea id="prompt-input" class="auto-expand" placeholder="Prompt Here"></textarea>
                 </div>
 
                 <div class="navigation">
-                    <button class="arrow-button" onclick="previousSentence()">❮</button>
+                    <button class="left-arrow arrow-button">❮</button>
                     <span id="english-prompt" class="prompt">I'm not a student.</span>
-                    <button class="arrow-button" onclick="nextSentence()">❯</button>
+                    <button class="right-arrow arrow-button">❯</button>
                 </div>
 
                 <div class="translation">
@@ -37,11 +36,14 @@
 
             <!-- Right Section -->
             <div class="right-section">
+                
+                <h2 class="instruction">Translate the following from English to Korean:</h2>
                 <p id="basic-english" class="text">I'm not a student.</p>
                 <p id="basic-korean" class="text">나는 학생이 아니다.</p>
                 <p class="score">BLEU Score: <span id="basic-score">0.3</span></p>
             </div>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 </body>
 </html>
