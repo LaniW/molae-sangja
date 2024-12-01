@@ -19,14 +19,16 @@ let currentIndex = 0;
 
 // Update the UI with the current prompt and translations
 function updateUI() {
-    const englishPrompt = document.getElementById('english-prompt');
+    const englishPromptLeft = document.getElementById('english-prompt-left');
+    const englishPromptRight = document.getElementById('english-prompt-right');
     const koreanFormal = document.getElementById('adaptive-korean');
     const scoreFormal = document.getElementById('adaptive-score');
     const koreanPlain = document.getElementById('basic-korean');
     const scorePlain = document.getElementById('basic-score');
 
     // Update text and scores
-    englishPrompt.textContent = prompts[currentIndex];
+    englishPromptLeft.textContent = prompts[currentIndex];
+    englishPromptRight.textContent = prompts[currentIndex];
     koreanFormal.textContent = translations[currentIndex].koreanFormal;
     scoreFormal.textContent = translations[currentIndex].scoreFormal.toFixed(1);
     koreanPlain.textContent = translations[currentIndex].koreanPlain;
@@ -35,15 +37,13 @@ function updateUI() {
 
 // Handle left arrow button click
 function handleLeftArrow() {
-    console.log('Left arrow clicked');
-    currentIndex = (currentIndex - 1 + prompts.length) % prompts.length; // Wrap around to the last item
+    currentIndex = (currentIndex - 1 + prompts.length) % prompts.length;
     updateUI();
 }
 
 // Handle right arrow button click
 function handleRightArrow() {
-    console.log('Right arrow clicked');
-    currentIndex = (currentIndex + 1) % prompts.length; // Wrap around to the first item
+    currentIndex = (currentIndex + 1) % prompts.length;
     updateUI();
 }
 
@@ -56,26 +56,18 @@ document.addEventListener('prompt-input', function (event) {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed'); // Check if this appears
-
     const leftArrow = document.querySelector(".left-arrow");
     const rightArrow = document.querySelector(".right-arrow");
-
     if (leftArrow) {
         leftArrow.addEventListener("click", handleLeftArrow);
-        console.log('Left arrow listener attached'); // Confirm listener
     } else {
-        console.error('Left arrow button not found'); // Error if not found
+        console.error('Left arrow button not found');
     }
-
     if (rightArrow) {
         rightArrow.addEventListener("click", handleRightArrow);
-        console.log('Right arrow listener attached'); // Confirm listener
     } else {
-        console.error('Right arrow button not found'); // Error if not found
+        console.error('Right arrow button not found');
     }
 
     updateUI();
 });
-
-// Initialize the UI with the first prompt
