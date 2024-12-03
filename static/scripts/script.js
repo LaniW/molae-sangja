@@ -10,6 +10,16 @@ async function fetchData() {
     updateUI();
 }
 
+async function translateWithLLM(prompt, sentence) {
+    const response = await fetch('/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt, english_sentence: sentence })
+    });
+    const result = await response.json();
+    return result.translation;
+}
+
 let currentIndex = 0;
 
 // Update the UI with the current prompt and translations
