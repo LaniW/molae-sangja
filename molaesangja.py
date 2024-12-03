@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify
-import openai
 import json
 from sacrebleu import corpus_bleu
 
