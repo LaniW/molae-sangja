@@ -1,14 +1,12 @@
 from flask import Flask, render_template, request, jsonify
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import pipeline
 import re
 import json
 from sacrebleu import corpus_bleu
 
 app = Flask(__name__)
 
-model_name = "Helsinki-NLP/opus-mt-tc-big-en-ko"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+pipe = pipeline("text-generation", model="microsoft/Phi-3-mini-4k-instruct", trust_remote_code=True)
 
 with open("data/processed_corpus.json", "r", encoding="utf-8") as f:
     corpus_data = json.load(f)
@@ -24,12 +22,12 @@ def get_data():
 @app.route('/translate', methods=['POST'])
 def translate():
     content = request.json
+    user_input = content.get("prompt", "")
     english_sentence = content.get("english_sentence", "")
 
     try:
-        inputs = tokenizer(english_sentence, return_tensors="pt", truncation=True)
-        outputs = model.generate(inputs["input_ids"], max_length=100, num_beams=4, early_stopping=True)
-        translation = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        response = pipe(user_input)
+        translation = response[0]["generated_text"] if response else "No output"
         return jsonify({"translation": translation})
     except Exception as e:
         return jsonify({"error": str(e)}), 500

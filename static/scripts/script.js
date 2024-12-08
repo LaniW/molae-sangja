@@ -10,11 +10,11 @@ async function fetchData() {
     updateUI();
 }
 
-async function translateWithLLM(prompt, sentence) {
+async function translateWithLLM(sentence) {
     const response = await fetch('/translate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, english_sentence: sentence })
+        body: JSON.stringify({sentence})
     });
     const result = await response.json();
     return result.translation;
@@ -59,12 +59,12 @@ document.getElementById('prompt-input').addEventListener('keydown', async (event
         const userPrompt = event.target.value.trim();
         if (userPrompt) {
             const defaultPrompt = prompts[currentIndex];
-            const userTranslation = await translateWithLLM(userPrompt, defaultPrompt);
-            const defaultTranslation = await translateWithLLM("Translate the following from English to Korean:", defaultPrompt);
-            document.getElementById('adaptive-korean').textContent = userTranslation;
-            document.getElementById('basic-korean').textContent = defaultTranslation;
-            const bleuScore = calculateBLEU(userTranslation, defaultTranslation);
-            document.getElementById('adaptive-score').textContent = bleuScore.toFixed(2);
+            //const userTranslation = await translateWithLLM(userPrompt, defaultPrompt);
+            //const defaultTranslation = await translateWithLLM("Translate the following from English to Korean:", defaultPrompt);
+            //document.getElementById('adaptive-korean').textContent = userTranslation;
+            document.getElementById('basic-korean').textContent = await translateWithLLM(userPrompt);
+            //const bleuScore = calculateBLEU(userTranslation, defaultTranslation);
+            //document.getElementById('adaptive-score').textContent = bleuScore.toFixed(2);
         }
     }
 });
